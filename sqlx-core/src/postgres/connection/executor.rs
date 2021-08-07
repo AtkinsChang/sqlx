@@ -218,6 +218,8 @@ impl PgConnection {
             // patch holes created during encoding
             arguments.apply_patches(self, &metadata.parameters).await?;
 
+            self.wait_until_ready().await?;
+
             // bind to attach the arguments to the statement and create a portal
             self.stream.write(Bind {
                 portal: None,
