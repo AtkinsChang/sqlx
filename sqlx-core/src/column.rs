@@ -2,7 +2,7 @@ use crate::database::Database;
 use crate::error::Error;
 use std::fmt::Debug;
 
-pub trait Column: private_column::Sealed + 'static + Send + Sync + Debug {
+pub trait Column: 'static + Send + Sync + Debug {
     type Database: Database;
 
     /// Gets the column ordinal.
